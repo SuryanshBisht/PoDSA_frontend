@@ -1,11 +1,18 @@
-import React , {useState, useEffect} from "react"
+import React  from "react"
 import * as XLSX from 'xlsx/xlsx.js';
-import Table from './table.js'
- 
-const ParseExcell = () => {
+import {useState} from 'react'
 
+import Table from './table.js';
+import './parseExcell.css';
+
+const ParseExcell = () => {
+  // const [table, setTable] = useState(false);
+  const [data, setData] = useState(-1);
   let jsonData;
-  const baseUrl = 'http://localhost:3000/'
+  // let data;
+  // let vm,va;
+
+    const baseUrl = 'http://localhost:3000/'
     const handleFile = async (e) => {
         const file = e.target.files[0];
         const data = await file.arrayBuffer();
@@ -24,18 +31,44 @@ const ParseExcell = () => {
           },
           body: JSON.stringify({parcel: jsonData})
         })
-        console.log(res)
+        let d = await res.json();
+        d = JSON.parse(d);
+        setData(d);
+        // console.log(data);
+        // console.log(data.Voltage_magnitude);
+        // console.log(data.Voltage_magnitude.V2);
+
+        // Object.entries(data).map(entry => {
+        //     let key = entry[0];
+        //     let value = entry[1];
+        //     console.log(key, value);
+        // });
+
+        // Object.entries(data.Voltage_magnitude).map(entry => {
+        //     let key = entry[0];
+        //     let value = entry[1];
+        //     console.log(key, value);
+        // });
     }
 
     return (
-        <div>
+      <>  
+        <div className = 'container'>
+        <h1><u>Direct load flow analysis</u></h1>
 
-        <h1>Give the Input File</h1>
+        <div className = 'row'>
+        <h2>Upload data file </h2>
         <input type="file" onChange={(e) => handleFile(e)}/>
+        </div>
+
+        <div className = 'row'>
         <h2>Click Here to run the program.</h2>
         <button onClick={() => runPythonScript() }>RUN</button>
-        
         </div>
+        <br/><br/>
+        <Table jsonData = {data}/>
+        </div>
+      </>
     );
   }
   
