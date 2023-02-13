@@ -1,6 +1,5 @@
 import React from "react";
 import ParseExcell from "./Components/parseExcell.js";
-import Table from "./Components/table.js" 
 import './App.css' 
 
 
