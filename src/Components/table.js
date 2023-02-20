@@ -3,11 +3,11 @@ import './table.css';
 
 
 const Table = (props) => {
-    if(Object.keys(props.jsonData).length === 0) return <div>  </div>
+    if(props.jsonData !== null && props.jsonData !== undefined && Object.keys(props.jsonData).length === 0) return <div>  </div>
     let data = props.jsonData;
     return(
-
         <div className = 'table-container'>
+
         <div className = 'col col-1' key = "1">
         <div className = 'heading cell'>
         Bus Number
@@ -28,7 +28,7 @@ const Table = (props) => {
 
         <div className = 'col' key = "2">
         <div className = 'heading cell'>
-        Voltage magnitude(V)
+        Voltage magnitude(kV)
         </div>
         {
            Object.entries(data.Voltage_magnitude).map(
@@ -63,6 +63,7 @@ const Table = (props) => {
             ) 
         }   
         </div>
+        
         </div>
 
     )
