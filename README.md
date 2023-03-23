@@ -6,9 +6,15 @@ clone the repo by running the command
 
 install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.org/en/download/releases)
 
-In the project directory, run:
+Navigate to the project directory by running :-
+
+### `cd frontend`
+
+install the required dependencies by running :-
 
 ### `npm install`
+
+start the development server by running :-
 
 ### `npm start`
 
