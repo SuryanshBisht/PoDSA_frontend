@@ -1,8 +1,8 @@
 # IOP_2023_frontend
 
-clone the repo
-using 
-### git clone https://github.com/SuryanshBisht/IOP_2023_frontend.git
+clone the repo by running the command
+
+### `git clone https://github.com/SuryanshBisht/IOP_2023_frontend.git`
 
 install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.org/en/download/releases)
 
