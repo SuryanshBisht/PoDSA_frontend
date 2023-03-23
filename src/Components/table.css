@@ -1,29 +1,29 @@
 .table-container{
 	margin: 40px auto;
-display:  flex;
-flex-direction:  column;
+  display:  flex;
+  flex-direction:  column;
 }
 
 .table-header{
-font-weight : bold;
-flex-direction: row;
+  font-weight : bold;
+  flex-direction: row;
 }
 
 .col{
-display: flex;
-flex-direction : column;
+  display: flex;
+  flex-direction : column;
 }
 
 
 .heading{
-font-weight: 200;
-font-size: 20px;
+  font-weight: 200;
+  font-size: 20px;
 }
 
 .cell{
-padding : 5px;
-border : 1px solid black;
-display: flex;
-justify-content: center;
-align-items : center;
+  padding : 5px;
+  border : 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items : center;
 }

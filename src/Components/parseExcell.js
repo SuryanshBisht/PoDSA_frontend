@@ -1,7 +1,9 @@
 import React  from "react"
 import * as XLSX from 'xlsx/xlsx.js';
 import {useState, useEffect} from 'react';
-import CanvasJSReact from '../assets/canvasjs.react';
+
+import CanvasJSReact from '../assets/js/canvasjs.react';
+
 
 import Table from './table.js';
 import './parseExcell.css';
@@ -12,19 +14,20 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // parsing the excell file
 
+
 const ParseExcell = () => {
   const [data, setData] = useState(1);
   const [excelDatajson, setexceldatajson] = useState(1);
+
+  const [dataPoints, setDataPoints] = useState([]);
+  const [resultreceived, setresultreceived] = useState(0);
   // const [count, setcount] = useState(0);
 
   let d;
-  let dataPoints = [];
-
-// graph settings
   const options = {
       theme: "light2",
       title: {
-        text: "Voltage Magnitude Profile"
+        text: "Voltage magnitude Profile"
       },
       data: [{
         type: "line",
@@ -34,32 +37,35 @@ const ParseExcell = () => {
 
     // updating the graph data points
     useEffect(
-      () => {
-        // let arr = [];
-        for(let i = 0 ; i < data.length; i++){
-          dataPoints.push(
-            {
-              x : i + 2,
-              y : data[i].Voltage_magnitude
-            }
-          );
-        }
-      
-      }, [data] );
+    () => {
+      let arr = [];
+      // let arr = [];
+      for(let i = 0 ; i < data.length; i++){
+        arr.push(
+          {
+            x : i + 2,
+            y : data[i].Voltage_magnitude
+          }
+        );
+      }
+      setDataPoints(arr);
+    }, [resultreceived] );
 
     
 
     const baseUrl = 'http://localhost:3000/dmMethod';
     const handleFile = async (e) => {
         const file = e.target.files[0];
-        const data = await file.arrayBuffer();
-        const workbook = XLSX.read(data);
-        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const fetchedData = XLSX.utils.sheet_to_json(worksheet);
-        setexceldatajson(fetchedData);
-        // console.log(JSON.stringify(jsonData))
-        // console.log(typeof(jsonData));
-       }
+      const data = await file.arrayBuffer();
+      const workbook = XLSX.read(data);
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const fetchedData = XLSX.utils.sheet_to_json(worksheet);
+      setexceldatajson(fetchedData);
+      setresultreceived(0);
+      // console.log(JSON.stringify(excelDatajson))
+      // console.log(JSON.stringify(jsonData))
+      // console.log(typeof(jsonData));
+     }
 
 //sending request to run algo in backend
 
@@ -79,7 +85,7 @@ const ParseExcell = () => {
         d = JSON.parse(d[0]);
         d = addBusNo(d);
         setData(d);
-
+        setresultreceived(1)
     }
 
 // downloading results in excell sheet button
@@ -92,7 +98,7 @@ const ParseExcell = () => {
       XLSX.writeFile(workbook, "Node_Voltage_data.xlsx");
     };
 
-//changing the data to use easily to display
+// adding Bus No property to each object of data
     const addBusNo = (d) => {
       let res = [];
         for(let i = 0; i < d.length; i++){
@@ -120,7 +126,6 @@ const ParseExcell = () => {
         <input className="inputfile" type="file" name="a" id="a" onChange={(e) => handleFile(e)} />
         </button>
         </div>
-
         { 
           excelDatajson !== 1 ? 
             (
@@ -131,7 +136,7 @@ const ParseExcell = () => {
               </>
                
               {
-                (data !== 1) ? (
+                resultreceived ? (
                 <>
 
                   <div className = 'col'>
