@@ -24,7 +24,6 @@ const Table = (props) => {
             }
             )     
         }
-        <div> main ki bkc</div>
         </div>
     )
 
