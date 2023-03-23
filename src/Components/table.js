@@ -1,7 +1,6 @@
 import React from 'react';
 import './table.css';
 
-
 const Table = (props) => {
     let data = props.jsonData;
     // if(!(data === 1 && data !== null && data !== undefined && Object.keys(data).length !== 0)) return <div>  </div>
@@ -25,6 +24,7 @@ const Table = (props) => {
             }
             )     
         }
+        <div> main ki bkc</div>
         </div>
     )
 
