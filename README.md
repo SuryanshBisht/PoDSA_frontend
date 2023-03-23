@@ -8,6 +8,8 @@ install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.o
 
 In the project directory, run:
 
+### `npm install`
+
 ### `npm start`
 
 Runs the app in the development mode.\
