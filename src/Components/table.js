@@ -1,71 +1,35 @@
+
 import React from 'react';
 import './table.css';
 
-
+// code to display results in form of table
 const Table = (props) => {
-    if(Object.keys(props.jsonData).length === 0) return <div>  </div>
     let data = props.jsonData;
+    // if(!(data === 1 && data !== null && data !== undefined && Object.keys(data).length !== 0)) return <div>  </div>
     return(
-
-        <div className = 'table-container'>
-        <div className = 'col col-1' key = "1">
-        <div className = 'heading cell'>
-        Bus Number
-        </div>
+        <div className = 'table-container cell'>
+            <div className = 'row table-header'>
+                <div className = 'col '>Bus Number</div>
+                <div className = 'col '> Voltage(kV)</div>
+                <div className = 'col '> Angle(degrees)</div>
+            </div>
         {
-           Object.entries(data.Voltage_magnitude).map(
-                (entry) => {
-                    let v = entry[0];
-                 return(
-                    <div className = 'cell' key = {v}>
-                        <div>{v}</div>
+            data.map(
+            (info) => {
+                return (
+                    <div className = 'row' key = {info.Bus_No}>
+                        <div className = 'col'>{info.Bus_No}</div>
+                        <div className = 'col '>{info.Voltage_magnitude}</div>
+                        <div className = 'col '>{info.Voltage_angle}</div>
                     </div>
-                    );
-                }
-            ) 
-        }   
+                )
+            }
+            )    
+        }
         </div>
-
-        <div className = 'col' key = "2">
-        <div className = 'heading cell'>
-        Voltage magnitude(V)
-        </div>
-        {
-           Object.entries(data.Voltage_magnitude).map(
-                (entry) => {
-                    let v = entry[0];
-                    let val = entry[1];
-                    return(
-                    <div className = 'cell'  key = {v}>
-                        <div>{val}</div>
-                    </div>
-                    );
-                }
-            ) 
-        }   
-        </div>
-
-        <div className = 'col' key = "3">
-        <div className = 'heading cell'>
-        Voltage angle(degrees)
-        </div>
-        {
-           Object.entries(data.Voltage_angle).map(
-                (entry) => {
-                    let v = entry[0];
-                    let val = entry[1];
-                    return(
-                      <div className = 'cell'  key = {v}>
-                        <div>{val}</div>
-                    </div>
-                    );
-                }
-            ) 
-        }   
-        </div>
-        </div>
-
     )
+
+
 }
 
 export default Table;

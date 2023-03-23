@@ -1,12 +1,109 @@
+.mainHeader{
+	margin-top: 40px;
+	font-size: 37px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 50px;
+
+}
+
 .container{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items:  center;
-}
+	}
+
 .row{
 	width : 500px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
+	
 }
+.parseButton{
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 30px;
+  padding: 6px 30px;
+  margin-top: 4px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.parseButton:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.parseButton:hover {
+  background-color: #2d954a;
+}
+
+.parseButton:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.parseButton:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.parseButton:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.btn-warning{
+	position: relative;
+	padding: 11px 16px;
+	font-size: 19px;
+	line-height: 1.5;
+	border-radius: 3px;
+	color: #fff;
+	background-color: #ffc100;
+	border: 0;
+	transition: 0.2s;
+	overflow: hidden; 
+  }
+  
+  .btn-warning input[type = "file"]{
+	cursor: pointer;
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	transform: scale(3);
+	opacity: 0;
+  }
+  
+  .btn-warning:hover{
+	background-color: #d9a400;
+  }
+
+  .resultChart{
+	
+	width: 70vw;
+	margin: auto;
+	justify-content: space-between;
+	/* flex-direction : column; */
+	align-items: center;
+  }
