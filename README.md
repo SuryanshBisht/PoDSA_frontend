@@ -8,7 +8,7 @@ install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.o
 (download .msi file)
 
 navigate to the project directory :-
-## `cd IOP_2023_frontend`
+### `cd IOP_2023_frontend`
 
 install the required dependencies by running :-
 ### `npm install`
