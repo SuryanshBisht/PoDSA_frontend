@@ -5,7 +5,7 @@ clone the repo by running the command
 ### `git clone https://github.com/SuryanshBisht/IOP_2023_frontend.git`
 
 install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.org/en/download/releases)
-download .msi file
+(download .msi file)
 
 install the required dependencies by running :-
 
