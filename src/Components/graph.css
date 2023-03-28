@@ -1,0 +1,7 @@
+.resultChart{
+	width: 70vw;
+	margin: 5vw;
+	justify-content: space-between;
+	/* flex-direction : column; */
+	align-items: center;
+  }

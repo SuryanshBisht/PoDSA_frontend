@@ -1,5 +1,5 @@
 import React from "react";
-import ParseExcell from "./Components/parseExcell.js";
+import ParseExcel from "./Components/parseExcel.js";
 import './App.css' 
 
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <div className = 'home'>
-    <ParseExcell/> 
+    <ParseExcel/> 
     </div>
     </>
   );

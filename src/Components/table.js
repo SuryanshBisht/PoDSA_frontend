@@ -1,12 +1,25 @@
-
 import React from 'react';
 import './table.css';
 
 // code to display results in form of table
-
 const Table = (props) => {
-    let data = props.jsonData;
-    // if(!(data === 1 && data !== null && data !== undefined && Object.keys(data).length !== 0)) return <div>  </div>
+
+    // adding Bus No property to each object of data
+    const addBusNo = (d) => {
+      let res = [];
+        for(let i = 0; i < d.length; i++){
+          res.push(
+          {
+            Bus_No : i + 2,
+            Voltage_magnitude : d[i].Voltage_magnitude,
+            Voltage_angle : d[i].Voltage_angle,
+          }
+          );
+        }
+      return res;
+    }
+
+    let data = addBusNo(props.jsonData);
     return(
         <div className = 'table-container cell'>
             <div className = 'row table-header'>
