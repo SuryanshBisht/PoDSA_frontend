@@ -4,21 +4,23 @@ import {useState, useEffect} from 'react';
 
 import CanvasJSReact from '../assets/js/canvasjs.react';
 
-
 import Table from './table.js';
 import './parseExcell.css';
 
-
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-// parsing the excell file
-
+// parsing the excel file
 
 const ParseExcell = () => {
-  const [data, setData] = useState(1);
-  const [excelDatajson, setexceldatajson] = useState(1);
-
+  const [data, setData] = useState([
+      {Bus_No: 2, Voltage_magnitude: 10.865, Voltage_angle: 0.071},
+      {Bus_No: 3, Voltage_magnitude: 10.622, Voltage_angle: -0.884},
+      {Bus_No: 4, Voltage_magnitude: 10.418, Voltage_angle: -1.542},
+      {Bus_No: 5, Voltage_magnitude: 10.398, Voltage_angle: -1.588},
+      {Bus_No: 6, Voltage_magnitude: 10.437, Voltage_angle: -1.338}
+    ])
+  const [excelDatajson, setexceldatajson] = useState({});
+  const [excelextracted, setexcelextracted] = useState(0);
   const [dataPoints, setDataPoints] = useState([]);
   const [resultreceived, setresultreceived] = useState(0);
   // const [count, setcount] = useState(0);
@@ -35,9 +37,16 @@ const ParseExcell = () => {
       }]
     }
 
-    // updating the graph data points
+  // updating the graph data points
     useEffect(
     () => {
+      console.log('result received');
+
+      console.log('excel data:');
+      console.log(excelDatajson);
+
+      console.log('data:');
+      console.log(data);
       let arr = [];
       // let arr = [];
       for(let i = 0 ; i < data.length; i++){
@@ -49,27 +58,38 @@ const ParseExcell = () => {
         );
       }
       setDataPoints(arr);
-    }, [resultreceived] );
+    }, [resultreceived]);
 
-    
+    // useEffect(
+    //   () => {
+    //     // setexceldatajson(d);
+    //     console.log(JSON.stringify(excelDatajson))
+    //   }, [excelextracted]);
 
     const baseUrl = 'http://localhost:3000/dmMethod';
     const handleFile = async (e) => {
-        const file = e.target.files[0];
+      const file = e.target.files[0];
       const data = await file.arrayBuffer();
       const workbook = XLSX.read(data);
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
       const fetchedData = XLSX.utils.sheet_to_json(worksheet);
       setexceldatajson(fetchedData);
       setresultreceived(0);
-      // console.log(JSON.stringify(excelDatajson))
+      setexcelextracted(1);
+      // console.log(fetchedData);
+      console.log('extracted data as :');
+      // setData(1);
+      console.log(fetchedData);
+      // console.log(JSON.stringify(excelDatajson));
       // console.log(JSON.stringify(jsonData))
       // console.log(typeof(jsonData));
-     }
+    }
 
 //sending request to run algo in backend
 
     const runPythonScript = async (e) => {
+      console.log('data sent as :');
+      console.log(excelDatajson);
         const res = await fetch(baseUrl ,{
           method: 'POST',
           headers: {
@@ -77,16 +97,33 @@ const ParseExcell = () => {
           },
           body: JSON.stringify({parcel: excelDatajson})
         })
-        
-        d = await res.json();
+
+        // console.log('before d');
         // console.log(d);
-        // console.log(typeof(d));
-        // d = JSON.stringify(d);
-        d = JSON.parse(d[0]);
-        d = addBusNo(d);
-        setData(d);
-        setresultreceived(1)
+        // console.log('response received as');
+        // console.log(res);
+        try{
+          d = await res.json();
+          console.log(d);
+          // d = JSON.stringify(d);
+          d = JSON.parse(d[0]);
+          // console.log('after d before bus no');
+          // console.log(d);
+          d = addBusNo(d);
+          setresultreceived(resultreceived + 1);
+          setData(d);
+          console.log('after d with bus no');
+          console.log(d);
+          // console.log('data');
+          // console.log(data);
+        }
+        catch(error){
+          console.log('loda crashed with error :-');
+          console.log(error);
+        }
+        
     }
+
 
 // downloading results in excell sheet button
     const downloadExcel = (data) => {
@@ -110,7 +147,6 @@ const ParseExcell = () => {
           }
           );
         }
-  
       return res;
     }
     
@@ -127,18 +163,16 @@ const ParseExcell = () => {
         </button>
         </div>
         { 
-          excelDatajson !== 1 ? 
+          excelextracted ? 
             (
             <>
               <>
                 <h2>Click here to run the program.</h2>
                 <button className = 'parseButton' onClick={() => runPythonScript()}>RUN</button>
               </>
-               
               {
-                resultreceived ? (
+                resultreceived > 0 ? (
                 <>
-
                   <div className = 'col'>
                     <h2>Download the Results</h2>
                     <button className = 'parseButton' onClick={() => downloadExcel(data)}>Download</button> 
