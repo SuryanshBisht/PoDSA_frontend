@@ -83,54 +83,72 @@ const ParseExcel = () => {
 
     return (
       <>
-        <div className = 'container'>
-        <h1 className="mainHeader">Power Distribution System Analysis</h1>
+        <div className = 'container '>
+        <div className="row update">
+        <h1 className="mainHeader ">Power Distribution System Analysis</h1>
+        </div>
 
-        <div className = 'container'>
-          <label >
-            Select the Analysis:
+        <div className = 'container update'>
+          <label className="label">
+            <span>Select the Analysis:</span>
             <select value={method} onChange={handleChange}>
               {
                 options.map((option) => (
-                  <option value={option.value}>{option.label}</option>
+                  <option className="options" value={option.value}>{option.label}</option>
                 ))
               }
             </select>
           </label>
         </div>
 
-        <div className = 'col'>
-        <h2 >Upload the data file </h2>
-        <button type = "button" className = "btn-warning">
+        <div className = 'col row update'>
+        {/* <h2 >Upload The Data</h2> */}
+        <button type = "button" className = "btn-warning btn-update">
         <i className = "fa fa-upload"></i> Upload File
         <input className="inputfile" type="file" name="a" id="a" onChange={(e) => handleFile(e)} />
         </button>
-
+          {
+            inputData !== 1 ? 
+            // 0 !== 1 ? 
+            (
+              <button className = 'parseButton btn-update' onClick={() => runPythonScript()}>RUN</button>
+              ) : <div></div> 
+          }
         </div>
-        <Loading/>
+        
         { 
           inputData !== 1 ? 
+          // 0 !== 1 ? 
             (
             <>
-              <h2>Click here to run the program.</h2>
-              <button className = 'parseButton' onClick={() => runPythonScript()}>RUN</button>
+              {/* <div className="col row update">
+              <h2>Run The Program </h2>
+              <button className = 'parseButton btn-update' onClick={() => runPythonScript()}>RUN</button>
+              </div> */}
+
+              
 
               {
                 outputData !== 1 ? (
+                  // 0 !== 1 ? (
                   <>
                   <div className = 'row'>
-                    <h2>Download the Results</h2>
-                    <button className = 'parseButton' onClick={() => downloadExcel(outputData)}>Download</button> 
+                    <h2>RESULTS</h2>
                   </div>
 
-                  <div className = 'row'>
+                  <div className = 'row update btn-and-table'>
                     <Table jsonData = {outputData}/>
+                    <button className = 'parseButton btn-update' onClick={() => downloadExcel(outputData)}>Download</button> 
                   </div>
 
-                  <Graph title = "Voltage magnitude profile" dataPoints = {outputData}/>
-                  <Graph title = "Voltage angle profile" dataPoints = {outputData}/>
+                  <h2>GRAPHS</h2>
+
+                  <div className="update"><Graph title = "Voltage magnitude profile" dataPoints = {outputData}/></div>
+                  <div className="update"> <Graph title = "Voltage angle profile" dataPoints = {outputData}/></div>
+                 
                   </>
                 ) : loading ? <Loading/> : <div></div>
+                // ) : 0 ? <Loading/> : <div></div>
               }
             </>  
             ) : <div></div> 

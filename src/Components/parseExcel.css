@@ -27,6 +27,7 @@
 }
 .parseButton{
   appearance: none;
+  /* background-color: #2ea44f; */
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
@@ -84,7 +85,7 @@
 	line-height: 1.5;
 	border-radius: 3px;
 	color: #fff;
-	background-color: #ffc100;
+	background-color: #ff1100ad;
 	border: 0;
 	transition: 0.2s;
 	overflow: hidden; 
@@ -100,7 +101,42 @@
   }
   
   .btn-warning:hover{
-	background-color: #d9a400;
+	background-color: #ff8000cf;
   }
+  /* dropdown menu css */
 
+  .label{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 10px;
+  }
+label > span{
+  margin-right: 40px;
+
+} 
+label > select {
+  border: none;
+  border-radius: 3px;
+  padding: 8px
+}
+.options{
+  margin: 60px;
+}
+  /* new updated classes */
+  .update{
+    width: 80vw;
+    margin: 20px auto;
+    overflow: hidden;
+    background: #C1DCDC;
+    border-radius: 12px;
+  }
+  
+  .btn-and-table{
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-update{
+    margin-bottom: 20px;
+    margin-top: 20px
+  }
   
