@@ -4,12 +4,14 @@ import {useState} from 'react';
 
 import Table from './table.js';
 import Graph from './graph.js';
+import Loading from './loading.js';
 import './parseExcel.css';
 
 // parsing the excel file
 const ParseExcel = () => {
   const [outputData, setOutputData] = useState(1);
   const [inputData, setInputData] = useState(1);
+  const [loading, setLoading] = useState(0);
 
   const baseUrl = 'http://localhost:3000/dmMethod';
 
@@ -21,14 +23,16 @@ const ParseExcel = () => {
     const fetchedData = XLSX.utils.sheet_to_json(worksheet);
     setInputData(fetchedData);
     setOutputData(1);
-    console.log('extracted data as :');
-    console.log(fetchedData);
+    setLoading(0);
+    // console.log('extracted data as :');
+    // console.log(fetchedData);
   }
 
 //sending request to run algo in backend
   const runPythonScript = async (e) => {
-    console.log('data sent as :');
-    console.log(inputData);
+    // console.log('data sent as :');
+    // console.log(inputData);
+    setLoading(1);
     const res = await fetch(baseUrl ,{
       method: 'POST',
       headers: {
@@ -38,11 +42,11 @@ const ParseExcel = () => {
     })
     try{
       let d = await res.json();
-      console.log(d);
+      // console.log(d);
       d = JSON.parse(d[0]);
       setOutputData(d);
-      console.log('after d with bus no');
-      console.log(d);
+      // console.log('after d with bus no');
+      // console.log(d);
     }
     catch(error){
       console.log(error);
@@ -71,12 +75,14 @@ const ParseExcel = () => {
         <input className="inputfile" type="file" name="a" id="a" onChange={(e) => handleFile(e)} />
         </button>
         </div>
+        <Loading/>
         { 
           inputData !== 1 ? 
             (
             <>
               <h2>Click here to run the program.</h2>
               <button className = 'parseButton' onClick={() => runPythonScript()}>RUN</button>
+
               {
                 outputData !== 1 ? (
                   <>
@@ -92,7 +98,7 @@ const ParseExcel = () => {
                   <Graph title = "Voltage magnitude profile" dataPoints = {outputData}/>
                   <Graph title = "Voltage angle profile" dataPoints = {outputData}/>
                   </>
-                ) : <div></div>
+                ) : loading ? <Loading/> : <div></div>
               }
             </>  
             ) : <div></div> 
