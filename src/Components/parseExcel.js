@@ -4,6 +4,7 @@ import {useState} from 'react';
 
 import Table from './table.js';
 import Graph from './graph.js';
+import Loading from './loading.js';
 import './parseExcel.css';
 
 // parsing the excel file
@@ -11,6 +12,7 @@ const ParseExcel = () => {
   const [outputData, setOutputData] = useState(1);
   const [inputData, setInputData] = useState(1);
   const [method, setMethod] = useState('dmMethod');
+  const [loading, setLoading] = useState(0);
 
 
   let dmMethod= 'http://localhost:3000/dmMethod';
@@ -34,6 +36,7 @@ const ParseExcel = () => {
     const fetchedData = XLSX.utils.sheet_to_json(worksheet);
     setInputData(fetchedData);
     setOutputData(1);
+    setLoading(0);
     // console.log('extracted data as :');
     // console.log(fetchedData);
   }
@@ -42,9 +45,12 @@ const ParseExcel = () => {
   const runPythonScript = async (e) => {
     // console.log('data sent as :');
     // console.log(inputData);
+
     if(method === 'dmMethod') baseUrl= dmMethod;
     else if(method === 'dmMethod2') baseUrl= dmMethod2;
-  
+    
+    setLoading(1);
+
     const res = await fetch(baseUrl ,{
       method: 'POST',
       headers: {
@@ -54,11 +60,11 @@ const ParseExcel = () => {
     })
     try{
       let d = await res.json();
-      console.log(d);
+      // console.log(d);
       d = JSON.parse(d[0]);
       setOutputData(d);
-      console.log('after d with bus no');
-      console.log(d);
+      // console.log('after d with bus no');
+      // console.log(d);
     }
     catch(error){
       console.log(error);
@@ -101,12 +107,14 @@ const ParseExcel = () => {
         </button>
 
         </div>
+        <Loading/>
         { 
           inputData !== 1 ? 
             (
             <>
               <h2>Click here to run the program.</h2>
               <button className = 'parseButton' onClick={() => runPythonScript()}>RUN</button>
+
               {
                 outputData !== 1 ? (
                   <>
@@ -122,7 +130,7 @@ const ParseExcel = () => {
                   <Graph title = "Voltage magnitude profile" dataPoints = {outputData}/>
                   <Graph title = "Voltage angle profile" dataPoints = {outputData}/>
                   </>
-                ) : <div></div>
+                ) : loading ? <Loading/> : <div></div>
               }
             </>  
             ) : <div></div> 
