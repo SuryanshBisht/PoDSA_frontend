@@ -11,9 +11,22 @@ import './parseExcel.css';
 const ParseExcel = () => {
   const [outputData, setOutputData] = useState(1);
   const [inputData, setInputData] = useState(1);
+  const [method, setMethod] = useState('dmMethod');
   const [loading, setLoading] = useState(0);
 
-  const baseUrl = 'http://localhost:3000/dmMethod';
+
+  let dmMethod= 'http://localhost:3000/dmMethod';
+  let dmMethod2= 'http://localhost:3000/dmMethod2';
+  let baseUrl = 'http://localhost:3000/dmMethod';
+
+  const options = [
+    { label: 'Direct Load Flow', value: 'dmMethod' },
+    { label: 'Direct Load Flow 2', value: 'dmMethod2' },
+  ];
+  
+  const handleChange = (event) => {
+    setMethod(event.target.value);
+  };
 
   const handleFile = async (e) => {
     const file = e.target.files[0];
@@ -32,7 +45,12 @@ const ParseExcel = () => {
   const runPythonScript = async (e) => {
     // console.log('data sent as :');
     // console.log(inputData);
+
+    if(method === 'dmMethod') baseUrl= dmMethod;
+    else if(method === 'dmMethod2') baseUrl= dmMethod2;
+    
     setLoading(1);
+
     const res = await fetch(baseUrl ,{
       method: 'POST',
       headers: {
@@ -64,9 +82,22 @@ const ParseExcel = () => {
 
 
     return (
-      <>  
+      <>
         <div className = 'container'>
         <h1 className="mainHeader">Power Distribution System Analysis</h1>
+
+        <div className = 'container'>
+          <label >
+            Select the Analysis:
+            <select value={method} onChange={handleChange}>
+              {
+                options.map((option) => (
+                  <option value={option.value}>{option.label}</option>
+                ))
+              }
+            </select>
+          </label>
+        </div>
 
         <div className = 'col'>
         <h2 >Upload the data file </h2>
@@ -74,6 +105,7 @@ const ParseExcel = () => {
         <i className = "fa fa-upload"></i> Upload File
         <input className="inputfile" type="file" name="a" id="a" onChange={(e) => handleFile(e)} />
         </button>
+
         </div>
         <Loading/>
         { 
