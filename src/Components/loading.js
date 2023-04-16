@@ -5,7 +5,7 @@ import './loading.css';
 const Loading = (props) => {
   return(
     <>
-    <div className = "loading">
+    <div className = "loading ">
     </div>
 
     </>

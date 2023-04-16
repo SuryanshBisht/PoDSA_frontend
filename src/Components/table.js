@@ -31,7 +31,7 @@ const Table = (props) => {
             data.map(
             (info) => {
                 return (
-                    <div className = 'row' key = {info.Bus_No}>
+                    <div className = 'table-row' key = {info.Bus_No}>
                         <div className = 'col'>{info.Bus_No}</div>
                         <div className = 'col'>{info.Voltage_magnitude}</div>
                         <div className = 'col'>{info.Voltage_angle}</div>
