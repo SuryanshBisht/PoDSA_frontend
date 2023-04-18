@@ -83,7 +83,7 @@ const ParseExcel = () => {
 
     return (
       <>
-        <div className = 'container '>
+         <div className = 'container '>
         <div className="row update">
         <h1 className="mainHeader ">Power Distribution System Analysis</h1>
         </div>
@@ -153,8 +153,10 @@ const ParseExcel = () => {
             </>  
             ) : <div></div> 
         }
-        </div>
+        </div> 
+    
       </>
+     
     );
   }
   

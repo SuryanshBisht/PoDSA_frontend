@@ -1,29 +1,38 @@
 .table-container{
 	margin: 40px auto;
-  display:  flex;
-  flex-direction:  column;
+  background-color: white;
+  overflow-y: auto;
+  max-height: 60vh;
 }
 
-.table-header{
-  font-weight : bold;
-  flex-direction: row;
-}
-
-.col{
-  display: flex;
-  flex-direction : column;
+/* new updated table css */
+table, th, td{
+  border: 1px solid black;
+  padding: 5px;
 }
 
 
-.heading{
-  font-weight: 200;
-  font-size: 20px;
+table{
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.cell{
-  padding : 5px;
-  border : 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items : center;
+th{
+    height: 70px;
+    width: 250px;
+    background-color: #04AA6D;
+    /* background-color: #274142; */
+    color: white;
+}
+
+tr:hover{
+  background-color: #eefcfc;
+
+}
+
+
+
+td{
+  text-align: center;
+  height: 30px;
 }
