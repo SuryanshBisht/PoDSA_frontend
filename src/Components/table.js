@@ -20,6 +20,7 @@ const Table = (props) => {
     }
 
     let data = addBusNo(props.jsonData);
+    
     return(
         <div className = 'table-container' > 
           <table className="table-div">      
@@ -39,8 +40,8 @@ const Table = (props) => {
                          </tr>
                       )
                   }
-                )
-              } 
+                  )
+                }
 
           </table>
         

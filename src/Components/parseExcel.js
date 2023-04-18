@@ -7,11 +7,17 @@ import Graph from './graph.js';
 import Loading from './loading.js';
 import './parseExcel.css';
 
+import header_image from '../assets/images/header_image.svg';
+import frame from '../assets/images/Frame 3.svg';
+import arrow_up from '../assets/images/arrow_up.svg';
+import arrow_right from '../assets/images/arrow_right.svg';
+
+
 // parsing the excel file
 const ParseExcel = () => {
   const [outputData, setOutputData] = useState(1);
   const [inputData, setInputData] = useState(1);
-  const [method, setMethod] = useState('dmMethod');
+  const [method, setMethod] = useState('choose');
   const [loading, setLoading] = useState(0);
 
 
@@ -22,13 +28,14 @@ const ParseExcel = () => {
   const options = [
     { label: 'Direct Load Flow', value: 'dmMethod' },
     { label: 'Direct Load Flow 2', value: 'dmMethod2' },
-  ];
+  ]; 
   
   const handleChange = (event) => {
     setMethod(event.target.value);
   };
 
   const handleFile = async (e) => {
+    if(method === 'choose') return ;
     const file = e.target.files[0];
     const data = await file.arrayBuffer();
     const workbook = XLSX.read(data);
@@ -83,15 +90,20 @@ const ParseExcel = () => {
 
     return (
       <>
-         <div className = 'container '>
-        <div className="row update">
-        <h1 className="mainHeader ">Power Distribution System Analysis</h1>
-        </div>
+      <div className="image ">
+        <img src = {frame} alt = 'not found' className = 'bottomImage'/>
+        <img src = {header_image} alt = 'not found' className = 'topImage'/>
+      </div>
 
-        <div className = 'container update'>
+
+
+         
+
+        <div className = 'row '>
           <label className="label">
-            <span>Select the Analysis:</span>
-            <select value={method} onChange={handleChange}>
+            <span >Select the Analysis:</span>
+            <select className = 'dropdown' value={method} onChange={handleChange}>
+              <option disabled = {true} className="options" value='choose'>Choose</option>
               {
                 options.map((option) => (
                   <option className="options" value={option.value}>{option.label}</option>
@@ -101,32 +113,32 @@ const ParseExcel = () => {
           </label>
         </div>
 
-        <div className = 'col row update'>
-        {/* <h2 >Upload The Data</h2> */}
+
+        <div className = 'row'>
         <button type = "button" className = "btn-warning btn-update">
-        <i className = "fa fa-upload"></i> Upload File
+        <div className = 'btn-text' >UPLOAD FILE</div>
+        <img src = {arrow_up} alt = 'not found'/>
         <input className="inputfile" type="file" name="a" id="a" onChange={(e) => handleFile(e)} />
+
         </button>
           {
             inputData !== 1 ? 
-            // 0 !== 1 ? 
             (
-              <button className = 'parseButton btn-update' onClick={() => runPythonScript()}>RUN</button>
-              ) : <div></div> 
+              <button className = 'btn-warning' onClick={() => runPythonScript()}>
+              <div className = 'btn-text' >RUN</div>
+              <img src = {arrow_right} alt = 'not found'/>
+              </button>
+            ) : <div></div> 
           }
         </div>
-        
         { 
           inputData !== 1 ? 
-          // 0 !== 1 ? 
             (
             <>
               {/* <div className="col row update">
               <h2>Run The Program </h2>
               <button className = 'parseButton btn-update' onClick={() => runPythonScript()}>RUN</button>
               </div> */}
-
-              
 
               {
                 outputData !== 1 ? (
@@ -136,25 +148,26 @@ const ParseExcel = () => {
                     <h2>RESULTS</h2>
                   </div>
 
-                  <div className = 'row update btn-and-table'>
+                  <div className = 'btn-and-table'>
                     <Table jsonData = {outputData}/>
-                    <button className = 'parseButton btn-update' onClick={() => downloadExcel(outputData)}>Download</button> 
+                    <div className = 'row'>
+                    <button className = 'btn-warning' onClick={() => downloadExcel(outputData)}>
+                    <div className = 'btn-text' >DOWNLOAD</div>
+                    </button> 
+                    </div>
                   </div>
 
                   <h2>GRAPHS</h2>
 
                   <div className="update"><Graph title = "Voltage magnitude profile" dataPoints = {outputData}/></div>
-                  <div className="update"> <Graph title = "Voltage angle profile" dataPoints = {outputData}/></div>
+                  <div className="update"><Graph title = "Voltage angle profile" dataPoints = {outputData}/></div>
                  
                   </>
                 ) : loading ? <Loading/> : <div></div>
-                // ) : 0 ? <Loading/> : <div></div>
               }
             </>  
             ) : <div></div> 
         }
-        </div> 
-    
       </>
      
     );

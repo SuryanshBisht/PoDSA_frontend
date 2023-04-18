@@ -1,30 +1,65 @@
+/**{
+  outline : 1px solid red;
+}*/
+
 .mainHeader{
+
+  display : flex;
+  flex-direction: row;
+  justify-content: space-between;
 	margin-top: 40px;
 	font-size: 37px;
 	font-weight: bold;
 	text-transform: uppercase;
 	margin-bottom: 50px;
-
+/*  background-color: aqua;*/
+  position: relative;
 }
 
-/**{
-	outline : 1px solid red;
+.heading{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 64px;
+  color: #000000;
 }
+.image{
+  position: relative;
+}
+
+.topImage{
+  position: absolute;
+  z-index: 1;
+  left: 781px;
+  top: 201px;
+}
+
 */
 .container{
+  width : 100vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items:  center;
-	}
+}
 
 .row{
-	width : 500px;
+	width : 100%;
 	display: flex;
-	justify-content: space-around;
+  flex-direction : row;
+	justify-content: center;
 	align-items: center;
-	
 }
+
+.btn-text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  margin : 10px;
+}
+
 .parseButton{
   appearance: none;
   /* background-color: #2ea44f; */
@@ -80,57 +115,90 @@
 
 .btn-warning{
 	position: relative;
-	padding: 11px 16px;
-	font-size: 19px;
-	line-height: 1.5;
-	border-radius: 3px;
-	color: #fff;
-	background-color: #ff1100ad;
-	border: 0;
 	transition: 0.2s;
-	overflow: hidden; 
+	overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center ;
+  padding: 30px 15px;
+  width: 178px;
+  height: 48px;
+  background: #C1DCDC;
+  border-radius: 99px;
+  border : 0;
+  margin : 0 100px;
   }
   
   .btn-warning input[type = "file"]{
-	cursor: pointer;
-	position: absolute;
-	left: 0%;
-	top: 0%;
-	transform: scale(3);
-	opacity: 0;
+  	cursor: pointer;
+  	position: absolute;
+  	left: 0%;
+  	top: 0%;
+  	transform: scale(3);
+  	opacity: 0;
   }
   
   .btn-warning:hover{
-	background-color: #ff8000cf;
+/*    color : #C1DCDC;*/
+      cursor: pointer;
+	   background-color: #C1DCDC;; 
+  }
+
+  .btn-warning:active{
+    background-color: white;
   }
   /* dropdown menu css */
 
-  .label{
-    text-transform: uppercase;
-    font-weight: bold;
-    margin: 10px;
-  }
+select{
+  width : 280px;
+  height : 50px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-size: 20px;
+  border-radius: 8px;
+  line-height: 20px;
+  cursor : pointer;
+  border : 1px solid black;
+
+  /*to hide the custom arrow*/
+  -webkit-appearance : none;
+  -moz-appearance : none;
+  /*add custom arrow*/
+  background-image : url(../assets/images/Chevron.svg);
+  background-repeat : no-repeat;
+  background-position-x : 250px;
+  background-position-y : center;
+}
+.label{
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 10px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 label > span{
   margin-right: 40px;
-
 } 
 label > select {
   border: none;
   border-radius: 3px;
   padding: 8px
 }
-.options{
-  margin: 60px;
+
+option:checked{
+  height: 60px ;
+  background-color: #C1DCDC ;
 }
   /* new updated classes */
-  .update{
-    width: 80vw;
-    margin: 20px auto;
-    overflow: hidden;
-    background: #C1DCDC;
-    border-radius: 12px;
-  }
-  
+.update{
+  width: 1319px;
+  background: #C1DCDC;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
   .btn-and-table{
     display: flex;
     flex-direction: column;
