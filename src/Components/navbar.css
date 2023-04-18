@@ -1,5 +1,6 @@
 .Navbar-wrapper{
 	display : flex;
+	position : absolute;
 	flex-direction: row;
 	height : 93px;
 	align-items: center;
@@ -7,15 +8,23 @@
 	width : 1319px;
 }
 
+.dummy{
+	height : 93px;
+	width : 1319px;
+	margin : 0 auto;
+	position: relative;
+}
+
 .group{
 	display: flex;
 	align-items: center;
+	text-transform: uppercase;
 	margin-left : 50px;
 	width: 300px;
 	height: 100%;
-	font-family: 'Bitter';
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: 600;
 	font-size: 24px;
 	line-height: 29px;
 	color: #1E1E1E;
@@ -27,10 +36,14 @@
 	width: 100px;
 	height: 100%;
 	text-decoration : none;
-	font-family: 'Poppins';
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-style: normal;
-	font-weight: medium;
 	font-size: 18px;
 	line-height: 27px;
 	color: #1E1E1E;
+	transition: 0.2s;
+}
+.labelname:hover{
+	font-size: 19px;
+	color:#124b36;
 }

@@ -3,6 +3,7 @@
   background-color: white;
   overflow-y: auto;
   max-height: 60vh;
+  border-radius: 10px;
 }
 
 /* new updated table css */
@@ -20,12 +21,15 @@ th{
     height: 70px;
     width: 250px;
     background-color: #04AA6D;
+    font-weight: 100;
+    font: 28px;
+    font-size: large;
     /* background-color: #274142; */
     color: white;
 }
 
 tr:hover{
-  background-color: #eefcfc;
+  background-color: #ace5d8;
 
 }
 

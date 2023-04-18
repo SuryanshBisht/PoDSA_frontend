@@ -1,11 +1,11 @@
 body{
 	/* margin: 50px; */
-	background: rgb(255,255,255);
-    /* background: linear-gradient(73deg, rgba(255,255,255,1) 1%, rgba(255,255,255,1) 2%, rgba(220,230,255,1) 77%); */
+	/* background: rgb(50, 183, 216); */
+    background: linear-gradient(45deg, rgba(255,255,255,1) 1%, rgba(255,255,255,1) 2%, rgba(220,230,255,1) 77%);
 
     display : flex;
     justify-content: center;
-	font-family: Verdana, sans-serif;
+	font-family: Verdana;
 
 	height: 100%;
 	width: 100%;
