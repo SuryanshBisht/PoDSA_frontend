@@ -150,7 +150,7 @@ const ParseExcel = () => {
                   </div> 
 
                   <div className = 'btn-and-table update'>
-                    <Table className="tableStyle" jsonData = {outputData} method = {method}/>
+                    <Table className="tableStyle" jsonData = {outputData.v_output} method = {method}/>
                     <div className = 'row'>
                     <button className = 'btn-warning download-btn' onClick={() => downloadExcel(outputData)}>
                     <div className = 'btn-text' >DOWNLOAD</div>
@@ -164,30 +164,26 @@ const ParseExcel = () => {
               {
                 (method === 'dmMethod') ? (
                   <>
-                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage angle profile" dataPoints = {outputData}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage angle profile" dataPoints = {outputData.v_output}/></div>
 
 
                   <div className="tree-container">
-                      {/*<Tree treeData = {inputData}/>*/}
+                      {/*<Tree treeData = {{inputData}}/>*/}
                   </div>
                   </>
                   ):
                   (
                   <>
-                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_1_v" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_1_a" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_2_v" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_2_a" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_3_v" dataPoints = {outputData}/></div>
-                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_3_a" dataPoints = {outputData}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_1_v" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_1_a" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_2_v" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_2_a" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage magnitude profile ph_3_v" dataPoints = {outputData.v_output}/></div>
+                  <div className="update"><Graph method = {method} title = "Voltage angle profile ph_3_a" dataPoints = {outputData.v_output}/></div>
                   </>
                   )
               }
-
-
-
-              
 
                   </>
                 ) : loading ? <Loading/> : <div></div>

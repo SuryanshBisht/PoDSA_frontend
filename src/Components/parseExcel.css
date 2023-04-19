@@ -151,7 +151,7 @@
   /* dropdown menu css */
 
 select{
-  width : 280px;
+  width : 300px;
   height : 50px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
@@ -167,7 +167,7 @@ select{
   /*add custom arrow*/
   background-image : url(../assets/images/Chevron.svg);
   background-repeat : no-repeat;
-  background-position-x : 250px;
+  background-position-x : 285px;
   background-position-y : center;
 }
 .label{
