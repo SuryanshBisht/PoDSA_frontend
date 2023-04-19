@@ -40,19 +40,22 @@ const ParseExcel = () => {
     const file = e.target.files[0];
     const data = await file.arrayBuffer();
     const workbook = XLSX.read(data);
-    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    const fetchedData = XLSX.utils.sheet_to_json(worksheet);
+
+    const fetchedData = workbook.SheetNames.map((worksheetName) => {
+        return ((XLSX.utils.sheet_to_json(workbook.Sheets[worksheetName])));
+    })
+
     setInputData(fetchedData);
     setOutputData(1);
     setLoading(0);
-    // console.log('extracted data as :');
-    // console.log(fetchedData);
+    console.log('extracted data as :');
+    console.log(fetchedData);
   }
 
 //sending request to run algo in backend
   const runPythonScript = async (e) => {
-    // console.log('data sent as :');
-    // console.log(inputData);
+    console.log('data sent as :');
+    console.log(inputData);
 
     if(method === 'dmMethod') baseUrl= dmMethod;
     else if(method === 'dmMethod2') baseUrl= dmMethod2;
@@ -71,8 +74,8 @@ const ParseExcel = () => {
       // console.log(d);
       d = JSON.parse(d[0]);
       setOutputData(d);
-      // console.log('after d with bus no');
-      // console.log(d);
+      console.log('after d with bus no');
+      console.log(d);
     }
     catch(error){
       console.log(error);
@@ -85,7 +88,7 @@ const ParseExcel = () => {
       const worksheet = XLSX.utils.json_to_sheet(data);
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-      XLSX.writeFile(workbook, "Node_Voltage_data.xlsx");
+      XLSX.writeFile(workbook, "Load_flow_results.xlsx");
     };
 
 
@@ -169,6 +172,7 @@ const ParseExcel = () => {
       <div className="tree-container">
           <Tree></Tree>
       </div>
+
       </>
     );
   }
