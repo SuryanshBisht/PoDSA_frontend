@@ -17,8 +17,7 @@
 }
 
 .heading{
-  font-family: 'Poppins';
-  font-style: normal;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 800;
   font-size: 64px;
   line-height: 64px;
@@ -35,7 +34,7 @@
   top: 201px;
 }
 
-*/
+
 .container{
   width : 100vw;
 	display: flex;
@@ -53,16 +52,14 @@
 }
 
 .btn-text{
-  font-family: 'Inter';
+
   font-style: normal;
-  font-weight: 500;
   font-size: 16px;
   margin : 10px;
 }
 
 .parseButton{
   appearance: none;
-  /* background-color: #2ea44f; */
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
@@ -71,7 +68,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
   font-weight: 600;
   line-height: 30px;
@@ -124,7 +121,9 @@
   padding: 30px 15px;
   width: 178px;
   height: 48px;
-  background: #C1DCDC;
+  /* background: #C1DCDC; */
+  background-color:  #04AA6D;
+  color:white;
   border-radius: 99px;
   border : 0;
   margin : 0 100px;
@@ -142,7 +141,8 @@
   .btn-warning:hover{
 /*    color : #C1DCDC;*/
       cursor: pointer;
-	   background-color: #C1DCDC;; 
+      background-color: #068657;
+      color: white;
   }
 
   .btn-warning:active{
@@ -153,7 +153,7 @@
 select{
   width : 280px;
   height : 50px;
-  font-family: 'Montserrat';
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
   font-size: 20px;
   border-radius: 8px;
@@ -173,6 +173,7 @@ select{
 .label{
   text-transform: uppercase;
   font-weight: bold;
+  padding-left: 13px;
   margin: 10px;
   background: #FFFFFF;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
@@ -191,11 +192,14 @@ option:checked{
   height: 60px ;
   background-color: #C1DCDC ;
 }
+
   /* new updated classes */
 .update{
   width: 1319px;
   background: #C1DCDC;
-  border-radius: 24px;
+  border-radius: 24px; 
+  margin-bottom: 30px;
+  margin-top: 15px;
   overflow: hidden;
 }
 
@@ -205,6 +209,26 @@ option:checked{
   }
   .btn-update{
     margin-bottom: 20px;
-    margin-top: 20px
+    margin-top: 20px;
+   
+  }
+  .download-btn{
+      background-color:  #04AA6D;
+      color: white;
+      margin-bottom: 20px;
+  }
+ 
+  .tableStyle{
+    border: 1px solid black;
   }
   
+  /* tree css */
+  .tree-container{
+    width: 1319px;
+    height: 60vh;
+    background-color: #C1DCDC;
+    margin:auto;
+    overflow-y: hidden;
+    border: 7px solid  #04AA6D;;
+    border-radius: 24px;
+  }

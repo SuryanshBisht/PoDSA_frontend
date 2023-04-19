@@ -20,26 +20,31 @@ const Table = (props) => {
     }
 
     let data = addBusNo(props.jsonData);
+    
     return(
-        <div className = 'table-container cell'>
-            <div className = 'row table-header'>
-                <div className = 'col '>Bus Number</div>
-                <div className = 'col '> Voltage(kV)</div>
-                <div className = 'col '> Angle(degrees)</div>
-            </div>
-        {
-            data.map(
-            (info) => {
-                return (
-                    <div className = 'table-row' key = {info.Bus_No}>
-                        <div className = 'col'>{info.Bus_No}</div>
-                        <div className = 'col'>{info.Voltage_magnitude}</div>
-                        <div className = 'col'>{info.Voltage_angle}</div>
-                    </div>
-                )
-            }
-            )  
-        }
+        <div className = 'table-container' > 
+          <table className="table-div">      
+              <tr>
+                <th>Bus Number</th>
+                <th>Voltage(kV)</th>
+                <th>Angle(degrees)</th>
+              </tr>
+               {
+                  data.map(
+                  (info) => {
+                      return (
+                           <tr>
+                           <td>{info.Bus_No}</td>
+                           <td>{info.Voltage_magnitude}</td>
+                           <td>{info.Voltage_angle}</td>
+                         </tr>
+                      )
+                  }
+                  )
+                }
+
+          </table>
+        
         </div>
     )
 
