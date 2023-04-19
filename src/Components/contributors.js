@@ -1,5 +1,6 @@
 import React from 'react'
 import './contributors.css'
+import Vardan from '../assets/contributors_images/vardan_iop.jpg'
 
 const Contributors = () => {
   return (
@@ -7,7 +8,6 @@ const Contributors = () => {
     <div className="outer_container ">
 
       <div className="contributor_div">
-
 
             <h1>Following Students have Contributed towards the Open-Source Application</h1>
             <div className="contributor_div_inner">
@@ -31,7 +31,7 @@ const Contributors = () => {
                 </div>
                 
                 <div className="contributor_image">
-                    <img className="contributor_img" src={require('../assets/contributors_images/vardan_iop.jpg')}  alt="Vardan"></img>
+                    <img className="contributor_img" src={Vardan}  alt="Vardan"></img>
                     <a className="contributor_names" href="https://www.linkedin.com/in/vardan-jain-59b64421a/" target="_blank" >Vardan Jain</a>
                 </div>
               
