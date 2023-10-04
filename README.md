@@ -1,14 +1,14 @@
-# IOP_2023_frontend
+# PoDSA_frontend
 
 clone the repo by running the command
 
-### `git clone https://github.com/SuryanshBisht/IOP_2023_frontend.git`
+### `git clone https://github.com/SuryanshBisht/PoDSA_frontend.git`
 
 install node v16 from [https://nodejs.org/en/download/releases](https://nodejs.org/en/download/releases)
 (download .msi file)
 
 navigate to the project directory :-
-### `cd IOP_2023_frontend`
+### `cd PoDSA_frontend`
 
 install the required dependencies by running :-
 ### `npm install`
